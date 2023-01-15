@@ -56,18 +56,22 @@ export class Registration extends React.Component<RegisterProps, RegisterState>{
   handleChange = (event: any) => {
     event.preventDefault();
     const { name, value } = event.target;
+  
     let errors = this.state.errors;
     switch (name) {
-
+    case 'username':
+            errors.username = value.length < 0 ? 'Email is not valid!':value ;
+            break;
+     
       case 'email':
-        errors.email = Regex.test(value) ? '' : 'Email is not valid!';
+        errors.email = Regex.test(value) ? value: 'Email is not valid!';
         break;
       case 'password':
-        errors.password = value.length < 8 ? 'Password must be eight characters long!' : '';
+        errors.password = value.length < 8 ? 'Password must be eight characters long!' : value;
         break;
-    //   case 'age':
-    //     errors.age = value<0 ? 'Password must be eight characters long!' : 0;
-    //     break;
+      case 'age':
+        errors.age = value.size<0 ? 'Password must be eight characters long!' : value;
+        break;
       default:
         break;
     }
@@ -92,6 +96,8 @@ export class Registration extends React.Component<RegisterProps, RegisterState>{
     .then(res => {
       console.log(res);
       console.log(res.data);
+      alert("Successfully created");
+      window.location.href="/patient"
     })
    
    

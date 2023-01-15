@@ -3,7 +3,7 @@ import React from 'react';
 // { useRef }
 import './style.css'
 import ReCaptacha from "react-google-recaptcha";
-import axios from 'axios';
+// import axios from 'axios';
 // import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 // import {Doctor} from '../components/Doctor';
 
@@ -67,24 +67,25 @@ export class SignUp extends React.Component<SignUpProps, SignUpState>{
 
   handleSubmit = (event: any) => {
 
- 
-    event.preventDefault();
-    axios.get(`http://localhost:5000/login`)
-    .then(res => {
-    const persons=res.data;
-    console.log(persons);
-        
-    })
-    // let validity = true;
-    // Object.values(this.state.errors).forEach(
-    //   (val) => val.length > 0 && (validity = false)
-    // );
-    // if (validity === true) {
-    //   // navigate("/dashboard");
+    // var user = {
     
-    // } else {
-    //  console.log("Not successfull");
-    //}
+    //   email:this.state.email,
+    //   password:this.state.password,
+
+    // };
+  
+    event.preventDefault();
+    alert("Login was successful");
+    window.location.href="/doctor"
+    
+    // axios.get(`http://localhost:5000/login`)
+    // .then(res => {
+    // const user: any[]=res.data;
+    // console.log(user);
+   
+        
+    // })
+   
   }
 
   render() {

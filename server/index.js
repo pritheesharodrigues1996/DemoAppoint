@@ -29,24 +29,24 @@ app.use(cors());
 const userSchema = new mongoose.Schema({
     username:{    
     type: String,
-    required: [true, "Please provide an Name!"],
-    unique: [true, "Name Exist"],
+    // required: [true, "Please provide an Name!"],
+    // unique: [true, "Name Exist"],
 },
 
     email:{    
         type: String,
-        required: [true, "Please provide an email!"],
-        unique: [true, "Email Exist"],
+        // required: [true, "Please provide an email!"],
+        // unique: [true, "Email Exist"],
     },
     password:{    
          type: String,
-         required: [true, "Please provide an password!"],
-         unique: [true, "password Exist"],
+        //  required: [true, "Please provide an password!"],
+        //  unique: [true, "password Exist"],
     },
     age:{    
             type: Number,
-            required: [true, "Please provide an age!"],
-            unique: [true, "password Exist"],
+            // required: [true, "Please provide an age!"],
+            // unique: [true, "password Exist"],
         },
 
 })
@@ -55,19 +55,22 @@ const User = new mongoose.model("User", userSchema)
 app.post("/register",(req,res)=>{
     console.log(req.body) 
     const {username,email,password,age} =req.body;
-    User.findOne({email:email},(err,user)=>{
+    User.findOne({email:email},(user)=>{
         if(user){
             res.send({message:"user already exist"})
         }else {
-            const user = new User({username,email,password,age})
+            // const user = new User({username,email,password,age})
+           const user = new User({username,email,password,age})
+        
             user.save(err=>{
                 if(err){
                     res.send(err)
                 }else{
                     res.send({message:"sucessfull"})
+                    
                 }
             })
-        }
+       }
     })
 
 
@@ -87,4 +90,4 @@ app.post("/register",(req,res)=>{
     })
 });
 
-app.listen(PORT,()=>console.log(`localhost port :http://localhost:${PORT}/auth`));
+app.listen(PORT,()=>console.log(`localhost port :http://localhost:${PORT}/`));
