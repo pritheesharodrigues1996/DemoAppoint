@@ -3,6 +3,7 @@ import React from 'react';
 // { useRef }
 import './style.css'
 import ReCaptacha from "react-google-recaptcha";
+import axios from 'axios';
 // import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 // import {Doctor} from '../components/Doctor';
 
@@ -13,11 +14,10 @@ interface SignUpProps {
   value?: any;
 }
 interface SignUpState {
-  username: string,
   email: string,
   password: string,
   errors: {
-    username: string,
+
     email: string,
     password: string
   }
@@ -31,11 +31,9 @@ export class SignUp extends React.Component<SignUpProps, SignUpState>{
   constructor(props: SignUpProps) {
     super(props);
     const initialState = {
-      username: '',
       email: '',
       password: '',
       errors: {
-        username: '',
         email: '',
         password: ''
       }
@@ -69,33 +67,36 @@ export class SignUp extends React.Component<SignUpProps, SignUpState>{
 
   handleSubmit = (event: any) => {
 
-    // const navigate = useNavigate();
+ 
     event.preventDefault();
-    let validity = true;
-    Object.values(this.state.errors).forEach(
-      (val) => val.length > 0 && (validity = false)
-    );
-    if (validity === true) {
-      // navigate("/dashboard");
+    axios.get(`http://localhost:5000/login`)
+    .then(res => {
+    const persons=res.data;
+    console.log(persons);
+        
+    })
+    // let validity = true;
+    // Object.values(this.state.errors).forEach(
+    //   (val) => val.length > 0 && (validity = false)
+    // );
+    // if (validity === true) {
+    //   // navigate("/dashboard");
     
-    } else {
-     console.log("Not successfull");
-    }
+    // } else {
+    //  console.log("Not successfull");
+    //}
   }
 
   render() {
     const { errors } = this.state
-    // const captchaRef = useRef(null);
+ 
     return (
       <div className='wrapper'>
         <div className='form-wrapper'>
           <h2>Login</h2>
-          {/* onSubmit={this.handleSubmit} */}
+
           <form onSubmit={this.handleSubmit} noValidate >
-            {/* <div className='email'>
-                  <label htmlFor="fullName">Full Name</label>
-                  <input type='text' name='fullName' onChange={this.handleChange}/>
-               </div> */}
+         
             <div className='email'>
               <label htmlFor="email">Email</label>
               <input type='email' name='email' onChange={this.handleChange} />

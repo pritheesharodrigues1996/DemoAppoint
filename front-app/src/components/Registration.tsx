@@ -86,12 +86,14 @@ export class Registration extends React.Component<RegisterProps, RegisterState>{
         password:this.state.password,
         age:this.state.age,
       };
+    
     //   https://jsonplaceholder.typicode.com/users
     axios.post(`http://localhost:5000/register`, { user })
     .then(res => {
       console.log(res);
       console.log(res.data);
     })
+   
    
   }
 

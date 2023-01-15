@@ -4,7 +4,8 @@ import registerUsers from '../controllers/Users.js';
 const router=express.Router();
 
 //all routes for doctors are specified with "/"
-router.get('/', getDoctors);
-router.post('/register', registerUsers);
+// router.get('/', getDoctors);
+// router.post('/register', registerUsers);
+// router.get('/login',login)
 
 export default router;

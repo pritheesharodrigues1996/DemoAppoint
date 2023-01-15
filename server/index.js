@@ -72,7 +72,7 @@ app.post("/register",(req,res)=>{
 
 
    }) 
-   app.post("/Login",(req,res)=>{
+   app.post("/login",(req,res)=>{
     const {email,password} =req.body;
     User.findone({email:email},(err,user)=>{
         if(user){
